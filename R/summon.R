@@ -42,13 +42,13 @@ summon <- function(seed_probs = c(0, 0.5, 0.1, 0.4), inscribed_probs = c(0, 0.1,
     orbit_bump_big <-
       orbit_params %>%
       filter(num > thick_outline) %>%
-      mutate(orbit_bumps = orbit_bumps + 0.02) %>%
+      mutate(orbit_bumps = orbit_bumps + 0.05) %>%
       pull(orbit_bumps)
 
     orbit_bump_small <-
       orbit_params %>%
       filter(num < thick_outline) %>%
-      mutate(orbit_bumps = orbit_bumps - 0.02) %>%
+      mutate(orbit_bumps = orbit_bumps - 0.12) %>%
       pull(orbit_bumps)
 
     orbit_params$orbit_bumps <- c(orbit_bump_small, orbit_params$orbit_bumps[thick_outline], orbit_bump_big)
