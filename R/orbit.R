@@ -103,10 +103,10 @@ orbit <- function(seed_probs = c(0.3, 0.5, 0.1, 0.1), planet_probs = c(0.4, 0.3,
       planets_orbits <- data.frame(id = "1", x = 0, y = 0)
     }
 
-#    planets_linesize <-
-#      data.frame(id = as.character(unique(planets_orbits$id)), linewidth = sample(seq(0.1, 0.16, by = 0.01), length(unique(planets_orbits$id)), replace = TRUE))
-#
-#    suppressWarnings(planets_orbits <- left_join(planets_orbits, planets_linesize, by = "id"))
+    planets_linesize <-
+      data.frame(id = as.character(unique(planets_orbits$id)), linewidth = sample(seq(0.1, 0.16, by = 0.01), length(unique(planets_orbits$id)), replace = TRUE))
+
+    suppressWarnings(planets_orbits <- left_join(planets_orbits, planets_linesize, by = "id"))
   } else {
     planets_pos <- data.frame(id = 1, x = 0, y = 0)
     planets_orbits <- data.frame(id = 1, x = 0, y = 0)
