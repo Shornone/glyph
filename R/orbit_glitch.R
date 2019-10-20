@@ -82,7 +82,7 @@ orbit_glitch <- function(seed_probs = c(1, 0, 0, 0), glitch_type = "spike", pare
 
     pareto_orbits2 <- makedf_orbits(num_paretos2, r = pareto_r2, linetype = pareto_linetype2, linewidth = pareto_width2)
   } else {
-    pareto_orbits2 <- data.frame(x = 0, y = 0, id = 0, parent = 0, linewidth = 0, linetype = "solid")
+    pareto_orbits2 <- data.frame(x = 0, y = 0, id = 0, parent = 1, linewidth = 0, linetype = "solid")
   }
 
   switch(glitch_type,
@@ -180,10 +180,10 @@ orbit_glitch <- function(seed_probs = c(1, 0, 0, 0), glitch_type = "spike", pare
   plot <-
     ggplot() +
     geom_polygon(data = final_dat[["seed"]], aes(x = x, y = y, group = id), fill = "white") +
-    geom_path(data = final_dat[["seed_outlines"]], aes(x = x, y = y, group = parent, size = linewidth), linetype = final_dat[["seed_outlines"]]$linetype, color = "white") +
+    geom_path(data = final_dat[["seed_outlines"]], aes(x = x, y = y, size = linewidth), linetype = final_dat[["seed_outlines"]]$linetype, color = "white") +
     geom_path(data = final_dat[["pareto1"]], aes(x = x, y = y, group = id, size = linewidth), linetype = final_dat[["pareto1"]]$linetype, color = "white") +
     geom_path(data = final_dat[["pareto2"]], aes(x = x, y = y, group = id, size = linewidth), linetype = final_dat[["pareto2"]]$linetype, color = "white") +
-    geom_path(data = final_dat[["orbits"]], aes(x = x, y = y, group = parent, size = linewidth), linetype = final_dat[["orbits"]]$linetype, color = "white") +
+    geom_path(data = final_dat[["orbits"]], aes(x = x, y = y, size = linewidth), linetype = final_dat[["orbits"]]$linetype, color = "white") +
     scale_size_identity() +
     scale_color_identity() +
     theme_void() +
