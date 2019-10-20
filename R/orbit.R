@@ -152,10 +152,10 @@ orbit <- function(seed_probs = c(0.3, 0.5, 0.1, 0.1), planet_probs = c(0.4, 0.3,
   plot <-
     ggplot() +
     geom_polygon(data = final_dat[["seed"]], aes(x = x, y = y, group = id), fill = "white") +
-    geom_path(data = final_dat[["seed_outlines"]], aes(x = x, y = y, group = parent, size = linewidth), linetype = final_dat[["seed_outlines"]]$linetype, color = "white") +
-    geom_path(data = final_dat[["pareto1"]], aes(x = x, y = y, group = parent, size = linewidth), linetype = final_dat[["pareto1"]]$linetype, color = "white") +
-    geom_path(data = final_dat[["pareto2"]], aes(x = x, y = y, group = parent, size = linewidth), linetype = final_dat[["pareto2"]]$linetype, color = "white") +
-    geom_path(data = final_dat[["orbits"]], aes(x = x, y = y, group = parent, size = linewidth), linetype = final_dat[["orbits"]]$linetype, color = "white") +
+    geom_path(data = final_dat[["seed_outlines"]], aes(x = x, y = y, size = linewidth), linetype = final_dat[["seed_outlines"]]$linetype, color = "white") +
+    geom_path(data = final_dat[["pareto1"]], aes(x = x, y = y, size = linewidth), linetype = final_dat[["pareto1"]]$linetype, color = "white") +
+    geom_path(data = final_dat[["pareto2"]], aes(x = x, y = y, size = linewidth), linetype = final_dat[["pareto2"]]$linetype, color = "white") +
+    geom_path(data = final_dat[["orbits"]], aes(x = x, y = y, size = linewidth), linetype = final_dat[["orbits"]]$linetype, color = "white") +
     geom_polygon(data = final_dat[["planets"]], aes(x = x, y = y, group = id), fill = "white") +
     geom_path(data = final_dat[["planet_orbits"]], aes (x = x, y = y, group = id, size = linesize), color = "white", size = 0.13) +
     scale_size_identity() +
