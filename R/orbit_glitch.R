@@ -13,8 +13,8 @@
 #' @return a glitched orbital ggplot
 #' @export
 #'
-orbit_glitch <- function(seed_probs = c(1, 0, 0, 0), glitch_type = "spike", pareto2_prob = c(0.2, 0.8),
-                             glitch_params = list(num_glitches = 10, glitch_r_min = 0.5, glitch_r_max = 2,
+orbit_glitch <- function(seed_probs = c(0, 0.7, 0, 0.3), glitch_type = "spike", pareto2_prob = c(0.2, 0.8),
+                             glitch_params = list(num_glitches = 10, glitch_r_min = 0.7, glitch_r_max = 1.3,
                                                   min_spikes = 30, max_spikes = 60, min_spikes2 = 15,
                                                   max_spikes2 = 40, min_spike_jitter = -0.2, max_spike_jitter = 0.2)) {
   #make seed df
