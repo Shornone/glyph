@@ -104,12 +104,11 @@ makedf_inscribed_planets <- function(shape, r, size) {
 #' @return a dataframe with x and y positions and associated parameters
 #' @export
 #'
-#######
-#makedf_outlines <- function(nlines, r, shapes, linetype, width) {
-#  df <- tibble(id = 1:nlines, r = r, shape = shapes, linetype = linetype, linewidth = width) %>%
-#    nest(r, shape, linetype, linewidth) %>%
-#    mutate(points = map(data, ~makedf_line(shape = .x$shape, r = .x$r, line = .x$linetype, width = .x$linewidth))) %>%
-#    unnest(points, .id = "parent")
+makedf_outlines <- function(nlines, r, shapes, linetype, width) {
+  df <- tibble(id = 1:nlines, r = r, shape = shapes, linetype = linetype, linewidth = width) %>%
+    nest(r, shape, linetype, linewidth) %>%
+    mutate(points = map(data, ~makedf_line(shape = .x$shape, r = .x$r, line = .x$linetype, width = .x$linewidth))) %>%
+    unnest(points, .id = "parent")
 
   return(df)
 
@@ -125,12 +124,11 @@ makedf_inscribed_planets <- function(shape, r, size) {
 #' @return
 #' @export
 #'
-#####
-#makedf_orbits <- function(nlines, r, linetype, linewidth) {
-#  df <- tibble(id = 1:nlines, r = r, linetype = linetype, linewidth = linewidth) %>%
-#    nest(r, linetype, linewidth) %>%
-#    mutate(points = map(data, ~makedf_line(r = .x$r, shape = "circle", line = .x$linetype, width = .x$linewidth))) %>%
-#    unnest(points, .id = "parent")
+makedf_orbits <- function(nlines, r, linetype, linewidth) {
+  df <- tibble(id = 1:nlines, r = r, linetype = linetype, linewidth = linewidth) %>%
+    nest(r, linetype, linewidth) %>%
+    mutate(points = map(data, ~makedf_line(r = .x$r, shape = "circle", line = .x$linetype, width = .x$linewidth))) %>%
+    unnest(points, .id = "parent")
 
   return(df)
 }
@@ -277,5 +275,3 @@ glitch_spike <- function(input, min_spikes = 30, max_spikes = 60, min_spike_r = 
 '%!in%' <- function(x, y) {
   !('%in%'(x,y))
 }
-
-
