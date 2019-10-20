@@ -15,7 +15,7 @@
 #'
 orbit_glitch <- function(seed_probs = c(0, 0.8, 0.2, 0), glitch_type = "spike", pareto2_prob = c(0.7, 0.3),
                              glitch_params = list(num_glitches = 17, glitch_r_min = 0.5, glitch_r_max = 1.2,
-                                                  min_spikes = 30, max_spikes = 60, min_spikes2 = 15,
+                                                  min_spikes = 5, max_spikes = 27, min_spikes2 = 15,
                                                   max_spikes2 = 40, min_spike_jitter = -0.2, max_spike_jitter = 0.2)) {
   #make seed df
   seed_opts <- c("none", "circle", "diamond", "square")
