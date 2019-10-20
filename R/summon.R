@@ -18,7 +18,7 @@ summon <- function(seed_probs = c(0, 0.5, 0.1, 0.4), inscribed_probs = c(0, 0.1,
   seed <- makedf_seed(seed_shape, seed_r)
 
   #choose outlines for seed
-  num_seed_outlines <- sample(1:3, 1)
+  num_seed_outlines <- sample(1:9, 1)
   seed_outline_bumps <- c(0.02, 0.03, 0.04)[1:num_seed_outlines]
   seed_outline_r <- rep(seed_r, times = num_seed_outlines) + seed_outline_bumps[1:num_seed_outlines]
   seed_outline_linetype <- sample(c("solid"), num_seed_outlines, replace = TRUE)
@@ -27,7 +27,7 @@ summon <- function(seed_probs = c(0, 0.5, 0.1, 0.4), inscribed_probs = c(0, 0.1,
   seed_outlines <- makedf_outlines(num_seed_outlines, seed_outline_r, seed_outline_shapes, seed_outline_linetype, seed_outline_width)
 
   #choose orbit params
-  num_orbits <- sample(1:4, 1)
+  num_orbits <- sample(1:7, 1)
   orbit_bumps <- c(0, 0.03, 0.1, 0.13)[1:num_orbits]
   orbit_params <- tibble(num = 1:num_orbits, orbit_bumps)
   orbit_params$orbit_widths <- c(sample(seq(0.15, 0.2, by = 0.01), 1), sample(seq(0.2, 0.25, by = 0.01), 1), sample(seq(0.2, 0.25, by = 0.01), 1), sample(seq(0.15, 0.2, by = 0.01), 1))[1:num_orbits]
