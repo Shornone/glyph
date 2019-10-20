@@ -82,7 +82,7 @@ orbit_glitch <- function(seed_probs = c(1, 0, 0, 0), glitch_type = "spike", pare
 
     pareto_orbits2 <- makedf_orbits(num_paretos2, r = pareto_r2, linetype = pareto_linetype2, linewidth = pareto_width2)
   } else {
-    pareto_orbits2 <- data.frame(x = 0, y = 0, id = 0, parent = 1, linewidth = 0, linetype = "solid")
+    pareto_orbits2 <- data.frame(x = 0, y = 0, id = 0, parent = 0, linewidth = 0, linetype = "solid")
   }
 
   switch(glitch_type,
