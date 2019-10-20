@@ -19,7 +19,7 @@ orbit <- function(seed_probs = c(0.3, 0.5, 0.1, 0.1), planet_probs = c(0.4, 0.3,
   num_seed_outlines <- sample(1:3, 1)
   seed_outline_bumps <- c(0.02, 0.03, 0.04)[1:num_seed_outlines]
   seed_outline_r <- rep(seed_r, times = num_seed_outlines) + seed_outline_bumps[1:num_seed_outlines]
-  seed_outline_linetype <- sample(c("solid", "dotted"), num_seed_outlines, replace = TRUE, prob = c(0.8, 0.2))
+  seed_outline_linetype <- sample(c("solid"), num_seed_outlines, replace = TRUE)
   seed_outline_width <- c(0.2, 0.2, 0.18)[1:num_seed_outlines]
   seed_outline_shapes <- seed_shape
   seed_outlines <- makedf_outlines(num_seed_outlines, seed_outline_r, seed_outline_shapes, seed_outline_linetype, seed_outline_width)
@@ -29,7 +29,7 @@ orbit <- function(seed_probs = c(0.3, 0.5, 0.1, 0.1), planet_probs = c(0.4, 0.3,
   orbit_bumps <- c(0, 0.03, 0.1, 0.13)[1:num_orbits]
   orbit_params <- tibble(num = 1:num_orbits, orbit_bumps)
   orbit_params$orbit_widths <- c(sample(seq(0.15, 0.2, by = 0.01), 1), sample(seq(0.2, 0.25, by = 0.01), 1), sample(seq(0.2, 0.25, by = 0.01), 1), sample(seq(0.15, 0.2, by = 0.01), 1))[1:num_orbits]
-  orbit_params$orbit_linetype <- sample(c("solid", "dotted"), num_orbits, replace = TRUE, prob = c(0.8, 0.2))
+  orbit_params$orbit_linetype <- sample(c("solid"), num_orbits, replace = TRUE)
   thick_outline <- sample(1:8, 1)
 
   #adjust orbits it one is thick
@@ -119,7 +119,7 @@ orbit <- function(seed_probs = c(0.3, 0.5, 0.1, 0.1), planet_probs = c(0.4, 0.3,
   pareto_start <- sample(0.35:0.6, 1)
   num_paretos <- sample(3:50, 1)
   pareto_r <- rpareto(num_paretos, pareto_start, shape = sample(3:4, 1))
-  pareto_linetype <- sample(c("solid", "dotted"), num_paretos, replace = TRUE, prob = c(0.9, 0.1))
+  pareto_linetype <- sample(c("solid"), num_paretos, replace = TRUE)
   pareto_width <- sample(seq(0.1, 0.25, by = 0.01), num_paretos, replace = TRUE)
 
   pareto_orbits <- makedf_orbits(num_paretos, r = pareto_r, linetype = pareto_linetype, linewidth = pareto_width)
@@ -129,7 +129,7 @@ orbit <- function(seed_probs = c(0.3, 0.5, 0.1, 0.1), planet_probs = c(0.4, 0.3,
     pareto_start2 <- sample(1:1.5, 1)
     num_paretos2 <- sample(1:20, 1)
     pareto_r2 <- rpareto(num_paretos2, pareto_start2, shape = sample(3:4, 1))
-    pareto_linetype2 <- sample(c("solid", "dotted"), num_paretos2, replace = TRUE, prob = c(0.9, 0.1))
+    pareto_linetype2 <- sample(c("solid"), num_paretos2, replace = TRUE)
     pareto_width2 <- sample(seq(0.1, 0.4, by = 0.01), num_paretos2, replace = TRUE)
 
     pareto_orbits2 <- makedf_orbits(num_paretos2, r = pareto_r2, linetype = pareto_linetype2, linewidth = pareto_width2)
@@ -153,9 +153,9 @@ orbit <- function(seed_probs = c(0.3, 0.5, 0.1, 0.1), planet_probs = c(0.4, 0.3,
     ggplot() +
     geom_polygon(data = final_dat[["seed"]], aes(x = x, y = y, group = id), fill = "white") +
     geom_path(data = final_dat[["seed_outlines"]], aes(x = x, y = y, group = parent, size = linewidth), linetype = final_dat[["seed_outlines"]]$linetype, color = "white") +
-    geom_path(data = final_dat[["pareto1"]], aes(x = x, y = y, group = parent, size = linewidth), linetype = final_dat[["pareto1"]]$linetype, color = "white") +
-    geom_path(data = final_dat[["pareto2"]], aes(x = x, y = y, group = parent, size = linewidth), linetype = final_dat[["pareto2"]]$linetype, color = "white") +
-    geom_path(data = final_dat[["orbits"]], aes(x = x, y = y, group = parent, size = linewidth), linetype = final_dat[["orbits"]]$linetype, color = "white") +
+    geom_path(data = final_dat[["pareto1"]], aes(x = x, y = y, size = linewidth), linetype = final_dat[["pareto1"]]$linetype, color = "white") +
+    geom_path(data = final_dat[["pareto2"]], aes(x = x, y = y, size = linewidth), linetype = final_dat[["pareto2"]]$linetype, color = "white") +
+    geom_path(data = final_dat[["orbits"]], aes(x = x, y = y,  size = linewidth), linetype = final_dat[["orbits"]]$linetype, color = "white") +
     geom_polygon(data = final_dat[["planets"]], aes(x = x, y = y, group = id), fill = "white") +
     geom_path(data = final_dat[["planet_orbits"]], aes (x = x, y = y, group = id, size = linesize), color = "white", size = 0.13) +
     scale_size_identity() +
