@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-summon <- function(seed_probs = c(0, 0.5, 0.1, 0.4), inscribed_probs = c(0, 0.1, 0.1, 0.8), sec_shape_probs = c(0, 1), third_shape_probs = c(0.2, 0.8)) {
+summon <- function(seed_probs = c(0, 0.5, 0.1, 0.4), inscribed_probs = c(0, 0.1, 0.1, 0.8), sec_shape_probs = c(0.1, 0.9), third_shape_probs = c(0.2, 0.8)) {
   #make seed df
   seed_opts <- c("none", "circle", "diamond", "square")
   seed_probs <- seed_probs
@@ -129,7 +129,7 @@ summon <- function(seed_probs = c(0, 0.5, 0.1, 0.4), inscribed_probs = c(0, 0.1,
   #choose inscribed planets
   if(num_inscribed > 0) {
     inscribed_planets <- list()
-    #inscribed_planets[[1]] <- choose_inscribed(i = 1, probs = c(0.2, 0.8))
+    inscribed_planets[[1]] <- choose_inscribed(i = 1, probs = c(0.2, 0.8))
     #need to change this to pick 2 or 4 for the first one, then if 2 on first pick 4 on second
     for(i in 1:num_inscribed) {
       inscribed_planets[[i]] <- choose_inscribed(i = i, probs = c(0, 1))
