@@ -21,7 +21,7 @@ summon <- function(seed_probs = c(0.3, 0.5, 0.1, 0.1), inscribed_probs = c(0.2, 
   num_seed_outlines <- sample(1:3, 1)
   seed_outline_bumps <- c(0.02, 0.03, 0.04)[1:num_seed_outlines]
   seed_outline_r <- rep(seed_r, times = num_seed_outlines) + seed_outline_bumps[1:num_seed_outlines]
-  seed_outline_linetype <- sample(c("solid", "dotted"), num_seed_outlines, replace = TRUE, prob = c(0.8, 0.2))
+  seed_outline_linetype <- sample(c("solid"), num_seed_outlines, replace = TRUE)
   seed_outline_width <- c(0.2, 0.2, 0.18)[1:num_seed_outlines]
   seed_outline_shapes <- seed_shape
   seed_outlines <- makedf_outlines(num_seed_outlines, seed_outline_r, seed_outline_shapes, seed_outline_linetype, seed_outline_width)
@@ -31,7 +31,7 @@ summon <- function(seed_probs = c(0.3, 0.5, 0.1, 0.1), inscribed_probs = c(0.2, 
   orbit_bumps <- c(0, 0.03, 0.1, 0.13)[1:num_orbits]
   orbit_params <- tibble(num = 1:num_orbits, orbit_bumps)
   orbit_params$orbit_widths <- c(sample(seq(0.15, 0.2, by = 0.01), 1), sample(seq(0.2, 0.25, by = 0.01), 1), sample(seq(0.2, 0.25, by = 0.01), 1), sample(seq(0.15, 0.2, by = 0.01), 1))[1:num_orbits]
-  orbit_params$orbit_linetype <- sample(c("solid", "dotted"), num_orbits, replace = TRUE, prob = c(0.8, 0.2))
+  orbit_params$orbit_linetype <- sample(c("solid"), num_orbits, replace = TRUE)
   thick_outline <- sample(1:8, 1)
 
   #adjust orbits if one is thick
@@ -84,14 +84,14 @@ summon <- function(seed_probs = c(0.3, 0.5, 0.1, 0.1), inscribed_probs = c(0.2, 
     if(inscribed_shape1 == "diamond") {
       sec_shape <- sample(c("square", "none"), 1, prob = sec_shape_probs)
       sec_r <- inscribed_r1
-      sec_linetype <- sample(c("solid", "dotted"), 1, prob = c(0.2, 0.8))
+      sec_linetype <- sample(c("solid"), 1)
       sec_width <- 0.15
       sec_df <- makedf_outlines(nlines = 1, r = sec_r, shapes = sec_shape, linetype = sec_linetype, width = sec_width)
     }
     if(inscribed_shape1 == "square") {
       sec_shape <- sample(c("diamond", "none"), 1, prob = sec_shape_probs)
       sec_r <- inscribed_r1
-      sec_linetype <- sample(c("solid", "dotted"), 1, prob = c(0.2, 0.8))
+      sec_linetype <- sample(c("solid"), 1)
       sec_width <- 0.15
       sec_df <- makedf_outlines(nlines = 1, r = sec_r, shapes = sec_shape, linetype = sec_linetype, width = sec_width)
     }
@@ -117,7 +117,7 @@ summon <- function(seed_probs = c(0.3, 0.5, 0.1, 0.1), inscribed_probs = c(0.2, 
     third_df <- makedf_outlines(nlines = 1, r = 1, shapes = "none", linetype = "solid", width = 0.1)
   }
 
-  inscribed_linetypes <- sample(c("solid", "dotted"), num_inscribed, replace = TRUE, prob = c(0.2, 0.8))
+  inscribed_linetypes <- sample(c("solid"), num_inscribed, replace = TRUE)
   inscribed_width <- 0.15
   if(num_inscribed > 0) {
     inscribed_df <- makedf_outlines(nlines = num_inscribed, r = inscribed_r, shapes = inscribed_shape, linetype = inscribed_linetypes, width = inscribed_width)
@@ -176,11 +176,11 @@ summon <- function(seed_probs = c(0.3, 0.5, 0.1, 0.1), inscribed_probs = c(0.2, 
   plot <-
     ggplot() +
     geom_polygon(data = final_dat[["seed"]], aes(x = x, y = y, group = id), fill = "white") +
-    geom_path(data = final_dat[["seed_outlines"]], aes(x = x, y = y, group = parent, size = linewidth), linetype = final_dat[["seed_outlines"]]$linetype, color = "white") +
-    geom_path(data = final_dat[["orbits"]], aes(x = x, y = y, group = parent, size = linewidth), linetype = final_dat[["orbits"]]$linetype, color = "white") +
-    geom_path(data = final_dat[["inscribed"]], aes(x = x, y = y, group = parent, size = linewidth), linetype = final_dat[["inscribed"]]$linetype, color = "white") +
-    geom_path(data = final_dat[["sec"]], aes(x = x, y = y, group = parent, size = linewidth), linetype = final_dat[["sec"]]$linetype, color = "white") +
-    geom_path(data = final_dat[["third"]], aes(x = x, y = y, group = parent, size = linewidth), linetype = final_dat[["third"]]$linetype, color = "white") +
+    geom_path(data = final_dat[["seed_outlines"]], aes(x = x, y = y, size = linewidth), linetype = final_dat[["seed_outlines"]]$linetype, color = "white") +
+    geom_path(data = final_dat[["orbits"]], aes(x = x, y = y, size = linewidth), linetype = final_dat[["orbits"]]$linetype, color = "white") +
+    geom_path(data = final_dat[["inscribed"]], aes(x = x, y = y, size = linewidth), linetype = final_dat[["inscribed"]]$linetype, color = "white") +
+    geom_path(data = final_dat[["sec"]], aes(x = x, y = y, size = linewidth), linetype = final_dat[["sec"]]$linetype, color = "white") +
+    geom_path(data = final_dat[["third"]], aes(x = x, y = y, size = linewidth), linetype = final_dat[["third"]]$linetype, color = "white") +
     geom_point(data = final_dat[["inscribed_planets"]], aes(x = x, y = y, size = size, color = color)) +
     scale_size_identity() +
     scale_color_identity() +
