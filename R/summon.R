@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-summon <- function(seed_probs = c(0.3, 0.5, 0.1, 0.1), inscribed_probs = c(0.2, 0.3, 0.3, 0.2), sec_shape_probs = c(0.4, 0.6), third_shape_probs = c(0.5, 0.5)) {
+summon <- function(seed_probs = c(0.3, 0.5, 0.1, 0.1), inscribed_probs = c(0, 0.1, 0.1, 0.8), sec_shape_probs = c(0, 1), third_shape_probs = c(0.2, 0.8)) {
   #make seed df
   seed_opts <- c("none", "circle", "diamond", "square")
   seed_probs <- seed_probs
